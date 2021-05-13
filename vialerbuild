@@ -371,7 +371,7 @@ function build_opus () {
             LDFLAGS="$LDFLAGS ${opus_opt_ldflags} -fPIE -miphoneos-version-min=${MIN_IOS_VERSION} -L${opus_output_dir}/lib" \
             CFLAGS="$CFLAGS ${opus_extra_cflags} ${opus_opt_cflags} -fPIE -miphoneos-version-min=${MIN_IOS_VERSION} -I${opus_output_dir}/include -isysroot ${xcode_dev_path}/Platforms/${os_platform}.platform/Developer/SDKs/${os_platform}.sdk" || exit
 
-        make -j4 || exit
+        make -j $(($(nproc) + 1)) || exit
 
         make install || exit
 
@@ -478,9 +478,9 @@ function config_site () {
     echo "#define PJMEDIA_HAS_GSM_CODEC 0" >> $PJSIP_CONFIG_SITE_H
     echo "#define PJMEDIA_SRTP_HAS_DTLS 1">> $PJSIP_CONFIG_SITE_H
     echo "#define PJMEDIA_HAS_OPUS_CODEC 1" >> $PJSIP_CONFIG_SITE_H
-    echo "#define PJ_AUTOCONF 1" >> $PJSIP_CONFIG_SITE_H    
+    echo "#define PJ_AUTOCONF 1" >> $PJSIP_CONFIG_SITE_H
     echo "#define PJMEDIA_HAS_SRTP 1" >> $PJSIP_CONFIG_SITE_H
-    
+
 
     if [ $H264_SUPPORT = true ]; then
         echo "#define PJMEDIA_HAS_VIDEO 1" >> $PJSIP_CONFIG_SITE_H
@@ -811,4 +811,3 @@ else
     _merge
     create_framework
 fi
-
