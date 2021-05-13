@@ -1,0 +1,59 @@
+diff --git pjsip/pjmedia/src/pjmedia-videodev/darwin_dev.m pjsip/pjmedia/src/pjmedia-videodev/darwin_dev.m
+index 36c3f34..4c0295e 100644
+--- pjsip/pjmedia/src/pjmedia-videodev/darwin_dev.m
++++ pjsip/pjmedia/src/pjmedia-videodev/darwin_dev.m
+@@ -1279,18 +1279,31 @@ static pj_status_t darwin_stream_start(pjmedia_vid_dev_stream *strm)
+     PJ_LOG(4, (THIS_FILE, "Starting Darwin video stream"));
+
+     if (stream->cap_session) {
++#if TARGET_OS_IPHONE
++        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
++            [stream->cap_session startRunning];
++            if (![stream->cap_session isRunning]) {
++                /* More info about the error should be reported in
++                 * VOutDelegate::session_runtime_error()
++                 */
++                PJ_LOG(3, (THIS_FILE, "Unable to start AVFoundation capture "
++                           "session"));
++            }
++        });
++#else
+         dispatch_sync_on_main_queue(^{
+             [stream->cap_session startRunning];
+         });
+-
+-	if (![stream->cap_session isRunning]) {
+-	    /* More info about the error should be reported in
+-	     * VOutDelegate::session_runtime_error()
+-	     */
+-	    PJ_LOG(3, (THIS_FILE, "Unable to start AVFoundation capture "
+-				  "session"));
+-	    return PJ_EUNKNOWN;
+-	}
++
++        if (![stream->cap_session isRunning]) {
++            /* More info about the error should be reported in
++             * VOutDelegate::session_runtime_error()
++             */
++            PJ_LOG(3, (THIS_FILE, "Unable to start AVFoundation capture "
++                       "session"));
++            return PJ_EUNKNOWN;
++        }
++#endif
+     }
+
+     return PJ_SUCCESS;
+diff --git pjsip/pjmedia/src/pjmedia-videodev/ios_opengl_dev.m pjsip/pjmedia/src/pjmedia-videodev/ios_opengl_dev.m
+index 929a6ff..ee86d0d 100644
+--- pjsip/pjmedia/src/pjmedia-videodev/ios_opengl_dev.m
++++ pjsip/pjmedia/src/pjmedia-videodev/ios_opengl_dev.m
+@@ -36,7 +36,11 @@
+  * in the background. Instead, it will perform the initialization later
+  * during rendering.
+  */
+-#define ALLOW_DELAYED_INITIALIZATION 	0
++#if PJ_CONFIG_IPHONE
++    #define ALLOW_DELAYED_INITIALIZATION     1
++#else
++    #define ALLOW_DELAYED_INITIALIZATION     0
++#endif

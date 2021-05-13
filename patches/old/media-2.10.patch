@@ -1,0 +1,19 @@
+diff --git a/pjsip/src/pjsua-lib/pjsua_media.c b/pjsip/src/pjsua-lib/pjsua_media.c
+index c55ab8050..bf8d750a1 100644
+--- a/pjsip/src/pjsip/src/pjsua-lib/pjsua_media.c
++++ b/pjsip/src/pjsip/src/pjsua-lib/pjsua_media.c
+@@ -2690,6 +2690,14 @@ pj_status_t pjsua_media_channel_create_sdp(pjsua_call_id call_id,
+ 	    }
+ 	}
+ 
++	pjmedia_sdp_media *x = sdp->media[mi];
++	if(PJMEDIA_TP_PROTO_DTLS_SRTP == pjmedia_sdp_transport_get_proto(&x->desc.transport)) {
++		char *new_tp = (char*)pj_pool_zalloc(pool, x->desc.transport.slen + 1);
++		pj_ansi_strncpy(new_tp, x->desc.transport.ptr, x->desc.transport.slen);
++		pj_ansi_strcat(new_tp, "F");
++		pj_strset2(&x->desc.transport, new_tp);
++	}
++
+ 	/* Setup RTCP-FB */
+ 	{
+ 	    pjmedia_rtcp_fb_setting rtcp_cfg;
