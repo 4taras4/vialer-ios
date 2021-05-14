@@ -45,7 +45,11 @@
     #define DEFAULT_HEIGHT	720
 #endif
 #define DEFAULT_FPS		15
-#define ALLOW_DELAYED_INITIALIZATION     1
+#if PJ_CONFIG_IPHONE
+    #define ALLOW_DELAYED_INITIALIZATION     1
+#else
+    #define ALLOW_DELAYED_INITIALIZATION     0
+#endif
 /* Define whether we should maintain the aspect ratio when rotating the image.
  * For more details, please refer to util.h.
  */
