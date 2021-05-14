@@ -6,6 +6,6 @@ git apply ../../patches/media-2.10.patch
 echo "inactive_on_hold.patch"
 git apply ../../patches/inactive_on_hold.patch
 echo "callid.patch"
-# git apply ../../patches/delayediossession.patch
+git apply ../../patches/delayediossession.patch
 echo "delayediossession.patch"
 #git apply patches/callid.patch

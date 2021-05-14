@@ -45,7 +45,7 @@
     #define DEFAULT_HEIGHT	720
 #endif
 #define DEFAULT_FPS		15
-
+#define ALLOW_DELAYED_INITIALIZATION     1
 /* Define whether we should maintain the aspect ratio when rotating the image.
  * For more details, please refer to util.h.
  */
