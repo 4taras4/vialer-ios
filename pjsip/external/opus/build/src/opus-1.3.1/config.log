@@ -30,8 +30,8 @@ Kernel configured for up to 12 processors.
 Processor type: x86_64h (Intel x86-64h Haswell)
 Processors active: 0 1 2 3 4 5 6 7 8 9 10 11
 Primary memory available: 16.00 gigabytes
-Default processor set: 726 tasks, 2717 threads, 12 processors
-Load average: 3.24, Mach factor: 8.74
+Default processor set: 546 tasks, 2253 threads, 12 processors
+Load average: 2.82, Mach factor: 9.17
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -127,7 +127,7 @@ configure:3712: gcc -o conftest  -arch x86_64 -Ofast -flto -g -fPIE -miphoneos-v
 configure:3716: $? = 0
 configure:3723: ./conftest
 dyld: attempt to run simulator program outside simulator (DYLD_ROOT_PATH not set)
-./configure: line 3725: 42141 Abort trap: 6           ./conftest$ac_cv_exeext
+./configure: line 3725: 36451 Abort trap: 6           ./conftest$ac_cv_exeext
 configure:3727: $? = 134
 configure:3742: result: yes
 configure:3747: checking for suffix of object files
@@ -607,7 +607,7 @@ char __malloc_hook ();
 undef: ___malloc_hook
 Undefined symbols for architecture x86_64:
   "___malloc_hook", referenced from:
-      _main in cc-439442.o
+      _main in cc-c13d14.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:14811: $? = 1
