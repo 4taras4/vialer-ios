@@ -2,7 +2,7 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Get CPU Info by asm method */
-/* #undef CPU_INFO_BY_ASM */
+#define CPU_INFO_BY_ASM 1
 
 /* Get CPU Info by c method */
 /* #undef CPU_INFO_BY_C */
@@ -107,10 +107,10 @@
 /* #undef OPUS_ARM_MAY_HAVE_NEON */
 
 /* Compiler supports ARMv7/Aarch64 Neon Intrinsics */
-#define OPUS_ARM_MAY_HAVE_NEON_INTR 1
+/* #undef OPUS_ARM_MAY_HAVE_NEON_INTR */
 
 /* Define if binary requires Aarch64 Neon Intrinsics */
-#define OPUS_ARM_PRESUME_AARCH64_NEON_INTR 1
+/* #undef OPUS_ARM_PRESUME_AARCH64_NEON_INTR */
 
 /* Define if binary requires EDSP instruction support */
 /* #undef OPUS_ARM_PRESUME_EDSP */
@@ -122,7 +122,7 @@
 /* #undef OPUS_ARM_PRESUME_NEON */
 
 /* Define if binary requires NEON intrinsics support */
-#define OPUS_ARM_PRESUME_NEON_INTR 1
+/* #undef OPUS_ARM_PRESUME_NEON_INTR */
 
 /* This is a build of OPUS */
 #define OPUS_BUILD /**/
@@ -131,28 +131,28 @@
 /* #undef OPUS_CHECK_ASM */
 
 /* Use run-time CPU capabilities detection */
-/* #undef OPUS_HAVE_RTCD */
+#define OPUS_HAVE_RTCD 1
 
 /* Compiler supports X86 AVX Intrinsics */
-/* #undef OPUS_X86_MAY_HAVE_AVX */
+#define OPUS_X86_MAY_HAVE_AVX 1
 
 /* Compiler supports X86 SSE Intrinsics */
-/* #undef OPUS_X86_MAY_HAVE_SSE */
+#define OPUS_X86_MAY_HAVE_SSE 1
 
 /* Compiler supports X86 SSE2 Intrinsics */
-/* #undef OPUS_X86_MAY_HAVE_SSE2 */
+#define OPUS_X86_MAY_HAVE_SSE2 1
 
 /* Compiler supports X86 SSE4.1 Intrinsics */
-/* #undef OPUS_X86_MAY_HAVE_SSE4_1 */
+#define OPUS_X86_MAY_HAVE_SSE4_1 1
 
 /* Define if binary requires AVX intrinsics support */
 /* #undef OPUS_X86_PRESUME_AVX */
 
 /* Define if binary requires SSE intrinsics support */
-/* #undef OPUS_X86_PRESUME_SSE */
+#define OPUS_X86_PRESUME_SSE 1
 
 /* Define if binary requires SSE2 intrinsics support */
-/* #undef OPUS_X86_PRESUME_SSE2 */
+#define OPUS_X86_PRESUME_SSE2 1
 
 /* Define if binary requires SSE4.1 intrinsics support */
 /* #undef OPUS_X86_PRESUME_SSE4_1 */

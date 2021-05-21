@@ -1,6 +1,6 @@
 # Opus codec reference implementation pkg-config file
 
-prefix=/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/build/built/iPhoneOS13.2-arm64.sdk
+prefix=/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/build/built/iPhoneSimulator13.2-x86_64.sdk
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

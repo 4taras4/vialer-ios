@@ -90,21 +90,21 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-apple-darwin20.3.0
-host_triplet = arm-apple-darwin
+host_triplet = x86_64-apple-darwin
 #am__append_1 = $(SILK_SOURCES_FIXED)
-##am__append_2 = $(SILK_SOURCES_SSE4_1) $(SILK_SOURCES_FIXED_SSE4_1)
-#am__append_3 = $(SILK_SOURCES_FIXED_ARM_NEON_INTR)
+#am__append_2 = $(SILK_SOURCES_SSE4_1) $(SILK_SOURCES_FIXED_SSE4_1)
+##am__append_3 = $(SILK_SOURCES_FIXED_ARM_NEON_INTR)
 am__append_4 = $(SILK_SOURCES_FLOAT)
-#am__append_5 = $(SILK_SOURCES_SSE4_1)
+am__append_5 = $(SILK_SOURCES_SSE4_1)
 am__append_6 = $(OPUS_SOURCES_FLOAT)
-#am__append_7 = $(CELT_SOURCES_SSE)
-#am__append_8 = $(CELT_SOURCES_SSE2)
-#am__append_9 = $(CELT_SOURCES_SSE4_1)
-am__append_10 = $(CELT_SOURCES_ARM)
-am__append_11 = $(SILK_SOURCES_ARM)
-am__append_12 = $(CELT_SOURCES_ARM_NEON_INTR)
-am__append_13 = $(SILK_SOURCES_ARM_NEON_INTR)
-#am__append_14 = $(CELT_SOURCES_ARM_NE10)
+am__append_7 = $(CELT_SOURCES_SSE)
+am__append_8 = $(CELT_SOURCES_SSE2)
+am__append_9 = $(CELT_SOURCES_SSE4_1)
+#am__append_10 = $(CELT_SOURCES_ARM)
+#am__append_11 = $(SILK_SOURCES_ARM)
+##am__append_12 = $(CELT_SOURCES_ARM_NEON_INTR)
+##am__append_13 = $(SILK_SOURCES_ARM_NEON_INTR)
+##am__append_14 = $(CELT_SOURCES_ARM_NE10)
 #am__append_15 = libarmasm.la
 #noinst_PROGRAMS =  \
 #	celt/tests/test_unit_cwrs32$(EXEEXT) \
@@ -200,14 +200,14 @@ libarmasm_la_LIBADD =
 am__libarmasm_la_SOURCES_DIST = celt/arm/celt_pitch_xcorr_arm-gnu.S
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = celt/arm/celt_pitch_xcorr_arm-gnu.lo
-#am_libarmasm_la_OBJECTS =  \
-#	$(am__objects_1)
+##am_libarmasm_la_OBJECTS =  \
+##	$(am__objects_1)
 libarmasm_la_OBJECTS = $(am_libarmasm_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-#am_libarmasm_la_rpath =
+##am_libarmasm_la_rpath =
 am__DEPENDENCIES_1 =
 libopus_la_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__append_15)
@@ -304,19 +304,19 @@ am__libopus_la_SOURCES_DIST = celt/bands.c celt/celt.c \
 	src/mapping_matrix.c src/analysis.c src/mlp.c src/mlp_data.c
 am__objects_2 = celt/x86/x86cpu.lo celt/x86/x86_celt_map.lo \
 	celt/x86/pitch_sse.lo
-#am__objects_3 = $(am__objects_2)
+am__objects_3 = $(am__objects_2)
 am__objects_4 = celt/x86/pitch_sse2.lo celt/x86/vq_sse2.lo
-#am__objects_5 = $(am__objects_4)
+am__objects_5 = $(am__objects_4)
 am__objects_6 = celt/x86/celt_lpc_sse4_1.lo celt/x86/pitch_sse4_1.lo
-#am__objects_7 = $(am__objects_6)
+am__objects_7 = $(am__objects_6)
 am__objects_8 = celt/arm/armcpu.lo celt/arm/arm_celt_map.lo
-am__objects_9 = $(am__objects_8)
+#am__objects_9 = $(am__objects_8)
 am__objects_10 = celt/arm/celt_neon_intr.lo \
 	celt/arm/pitch_neon_intr.lo
-am__objects_11 =  \
-	$(am__objects_10)
+##am__objects_11 =  \
+##	$(am__objects_10)
 am__objects_12 = celt/arm/celt_fft_ne10.lo celt/arm/celt_mdct_ne10.lo
-#am__objects_13 = $(am__objects_12)
+##am__objects_13 = $(am__objects_12)
 am__objects_14 = celt/bands.lo celt/celt.lo celt/celt_encoder.lo \
 	celt/celt_decoder.lo celt/cwrs.lo celt/entcode.lo \
 	celt/entdec.lo celt/entenc.lo celt/kiss_fft.lo celt/laplace.lo \
@@ -347,13 +347,13 @@ am__objects_17 = silk/x86/NSQ_sse4_1.lo silk/x86/NSQ_del_dec_sse4_1.lo \
 	silk/x86/VQ_WMat_EC_sse4_1.lo
 am__objects_18 = silk/fixed/x86/vector_ops_FIX_sse4_1.lo \
 	silk/fixed/x86/burg_modified_FIX_sse4_1.lo
-##am__objects_19 =  \
-##	$(am__objects_17) \
-##	$(am__objects_18)
+#am__objects_19 =  \
+#	$(am__objects_17) \
+#	$(am__objects_18)
 am__objects_20 =  \
 	silk/fixed/arm/warped_autocorrelation_FIX_neon_intr.lo
-#am__objects_21 =  \
-#	$(am__objects_20)
+##am__objects_21 =  \
+##	$(am__objects_20)
 am__objects_22 = silk/float/apply_sine_window_FLP.lo \
 	silk/float/corrMatrix_FLP.lo silk/float/encode_frame_FLP.lo \
 	silk/float/find_LPC_FLP.lo silk/float/find_LTP_FLP.lo \
@@ -376,15 +376,15 @@ am__objects_22 = silk/float/apply_sine_window_FLP.lo \
 	silk/float/scale_vector_FLP.lo silk/float/schur_FLP.lo \
 	silk/float/sort_FLP.lo
 am__objects_23 = $(am__objects_22)
-#am__objects_24 =  \
-#	$(am__objects_17)
+am__objects_24 =  \
+	$(am__objects_17)
 am__objects_25 =
 am__objects_26 = silk/arm/arm_silk_map.lo \
 	silk/arm/biquad_alt_neon_intr.lo \
 	silk/arm/LPC_inv_pred_gain_neon_intr.lo \
 	silk/arm/NSQ_del_dec_neon_intr.lo silk/arm/NSQ_neon.lo
-am__objects_27 =  \
-	$(am__objects_26)
+##am__objects_27 =  \
+##	$(am__objects_26)
 am__objects_28 = silk/CNG.lo silk/code_signs.lo silk/init_decoder.lo \
 	silk/decode_core.lo silk/decode_frame.lo \
 	silk/decode_parameters.lo silk/decode_indices.lo \
@@ -453,22 +453,22 @@ celt_tests_test_unit_dft_OBJECTS =  \
 	$(am_celt_tests_test_unit_dft_OBJECTS)
 am__DEPENDENCIES_2 = celt/x86/x86cpu.lo celt/x86/x86_celt_map.lo \
 	celt/x86/pitch_sse.lo
-#am__DEPENDENCIES_3 = $(am__DEPENDENCIES_2)
+am__DEPENDENCIES_3 = $(am__DEPENDENCIES_2)
 am__DEPENDENCIES_4 = celt/x86/pitch_sse2.lo celt/x86/vq_sse2.lo
-#am__DEPENDENCIES_5 = $(am__DEPENDENCIES_4)
+am__DEPENDENCIES_5 = $(am__DEPENDENCIES_4)
 am__DEPENDENCIES_6 = celt/x86/celt_lpc_sse4_1.lo \
 	celt/x86/pitch_sse4_1.lo
-#am__DEPENDENCIES_7 = $(am__DEPENDENCIES_6)
+am__DEPENDENCIES_7 = $(am__DEPENDENCIES_6)
 am__DEPENDENCIES_8 = celt/arm/armcpu.lo celt/arm/arm_celt_map.lo
-am__DEPENDENCIES_9 = $(am__DEPENDENCIES_8)
+#am__DEPENDENCIES_9 = $(am__DEPENDENCIES_8)
 am__DEPENDENCIES_10 = celt/arm/celt_neon_intr.lo \
 	celt/arm/pitch_neon_intr.lo
-am__DEPENDENCIES_11 =  \
-	$(am__DEPENDENCIES_10)
+##am__DEPENDENCIES_11 =  \
+##	$(am__DEPENDENCIES_10)
 am__DEPENDENCIES_12 = celt/arm/celt_fft_ne10.lo \
 	celt/arm/celt_mdct_ne10.lo
-#am__DEPENDENCIES_13 =  \
-#	$(am__DEPENDENCIES_12)
+##am__DEPENDENCIES_13 =  \
+##	$(am__DEPENDENCIES_12)
 am__DEPENDENCIES_14 = celt/bands.lo celt/celt.lo celt/celt_encoder.lo \
 	celt/celt_decoder.lo celt/cwrs.lo celt/entcode.lo \
 	celt/entdec.lo celt/entenc.lo celt/kiss_fft.lo celt/laplace.lo \
@@ -589,12 +589,12 @@ am__DEPENDENCIES_18 = silk/x86/NSQ_sse4_1.lo \
 	silk/x86/VAD_sse4_1.lo silk/x86/VQ_WMat_EC_sse4_1.lo
 am__DEPENDENCIES_19 = silk/fixed/x86/vector_ops_FIX_sse4_1.lo \
 	silk/fixed/x86/burg_modified_FIX_sse4_1.lo
-##am__DEPENDENCIES_20 =  \
-##	$(am__DEPENDENCIES_18) \
-##	$(am__DEPENDENCIES_19)
+#am__DEPENDENCIES_20 =  \
+#	$(am__DEPENDENCIES_18) \
+#	$(am__DEPENDENCIES_19)
 am__DEPENDENCIES_21 =  \
 	silk/fixed/arm/warped_autocorrelation_FIX_neon_intr.lo
-#am__DEPENDENCIES_22 = $(am__DEPENDENCIES_21)
+##am__DEPENDENCIES_22 = $(am__DEPENDENCIES_21)
 am__DEPENDENCIES_23 = silk/float/apply_sine_window_FLP.lo \
 	silk/float/corrMatrix_FLP.lo silk/float/encode_frame_FLP.lo \
 	silk/float/find_LPC_FLP.lo silk/float/find_LTP_FLP.lo \
@@ -617,14 +617,14 @@ am__DEPENDENCIES_23 = silk/float/apply_sine_window_FLP.lo \
 	silk/float/scale_vector_FLP.lo silk/float/schur_FLP.lo \
 	silk/float/sort_FLP.lo
 am__DEPENDENCIES_24 = $(am__DEPENDENCIES_23)
-#am__DEPENDENCIES_25 =  \
-#	$(am__DEPENDENCIES_18)
+am__DEPENDENCIES_25 =  \
+	$(am__DEPENDENCIES_18)
 am__DEPENDENCIES_26 = silk/arm/arm_silk_map.lo \
 	silk/arm/biquad_alt_neon_intr.lo \
 	silk/arm/LPC_inv_pred_gain_neon_intr.lo \
 	silk/arm/NSQ_del_dec_neon_intr.lo silk/arm/NSQ_neon.lo
-am__DEPENDENCIES_27 =  \
-	$(am__DEPENDENCIES_26)
+##am__DEPENDENCIES_27 =  \
+##	$(am__DEPENDENCIES_26)
 am__DEPENDENCIES_28 = silk/CNG.lo silk/code_signs.lo \
 	silk/init_decoder.lo silk/decode_core.lo silk/decode_frame.lo \
 	silk/decode_parameters.lo silk/decode_indices.lo \
@@ -1092,9 +1092,9 @@ AWK = awk
 CC = gcc
 CCAS = gcc
 CCASDEPMODE = depmode=gcc3
-CCASFLAGS =  -arch arm64 -Ofast -flto -g -fPIE -miphoneos-version-min=10.0 -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/dependencies/include -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk
+CCASFLAGS =  -arch x86_64 -Ofast -flto -g -fPIE -miphoneos-version-min=10.0 -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/dependencies/include -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
 CCDEPMODE = depmode=gcc3
-CFLAGS =  -arch arm64 -Ofast -flto -g -fPIE -miphoneos-version-min=10.0 -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/dependencies/include -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -fvisibility=hidden -D_FORTIFY_SOURCE=2 -W -Wall -Wextra -Wcast-align -Wnested-externs -Wshadow -Wstrict-prototypes
+CFLAGS =  -arch x86_64 -Ofast -flto -g -fPIE -miphoneos-version-min=10.0 -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/dependencies/include -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -fvisibility=hidden -fstack-protector-strong -D_FORTIFY_SOURCE=2 -W -Wall -Wextra -Wcast-align -Wnested-externs -Wshadow -Wstrict-prototypes
 CPP = gcc -E
 CPPFLAGS = 
 CYGPATH_W = echo
@@ -1110,7 +1110,7 @@ EGREP = /usr/bin/grep -E
 EXEEXT = 
 FGREP = /usr/bin/grep -F
 GREP = /usr/bin/grep
-HAVE_ARM_NE10 = 0
+HAVE_ARM_NE10 = 
 HAVE_DOT = 
 HAVE_DOXYGEN = no
 HAVE_PERL = 
@@ -1143,13 +1143,13 @@ OPUS_ARM_MAY_HAVE_EDSP =
 OPUS_ARM_MAY_HAVE_MEDIA = 
 OPUS_ARM_MAY_HAVE_NEON = 
 OPUS_ARM_NEON_INTR_CFLAGS = 
-OPUS_HAVE_RTCD = 
+OPUS_HAVE_RTCD = 1
 OPUS_LT_AGE = 8
 OPUS_LT_CURRENT = 8
 OPUS_LT_REVISION = 0
-OPUS_X86_AVX_CFLAGS = 
+OPUS_X86_AVX_CFLAGS = -mavx
 OPUS_X86_SSE2_CFLAGS = 
-OPUS_X86_SSE4_1_CFLAGS = 
+OPUS_X86_SSE4_1_CFLAGS = -msse4.1
 OPUS_X86_SSE_CFLAGS = 
 OTOOL = otool
 OTOOL64 = :
@@ -1196,9 +1196,9 @@ datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = arm-apple-darwin
-host_alias = arm-apple-darwin
-host_cpu = arm
+host = x86_64-apple-darwin
+host_alias = x86_64-apple-darwin
+host_cpu = x86_64
 host_os = darwin
 host_vendor = apple
 htmldir = ${docdir}
@@ -1213,7 +1213,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/build/built/iPhoneOS13.2-arm64.sdk
+prefix = /Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/build/built/iPhoneSimulator13.2-x86_64.sdk
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -1389,11 +1389,11 @@ src/analysis.c \
 src/mlp.c \
 src/mlp_data.c
 
-#noinst_LTLIBRARIES = libarmasm.la
-#libarmasm_la_SOURCES = $(CELT_SOURCES_ARM_ASM:.s=-gnu.S)
-#BUILT_SOURCES = $(CELT_SOURCES_ARM_ASM:.s=-gnu.S) \
-# $(CELT_AM_SOURCES_ARM_ASM:.s.in=.s) \
-# $(CELT_AM_SOURCES_ARM_ASM:.s.in=-gnu.S)
+##noinst_LTLIBRARIES = libarmasm.la
+##libarmasm_la_SOURCES = $(CELT_SOURCES_ARM_ASM:.s=-gnu.S)
+##BUILT_SOURCES = $(CELT_SOURCES_ARM_ASM:.s=-gnu.S) \
+## $(CELT_AM_SOURCES_ARM_ASM:.s.in=.s) \
+## $(CELT_AM_SOURCES_ARM_ASM:.s.in=-gnu.S)
 
 CLEANFILES = $(CELT_SOURCES_ARM_ASM:.s=-gnu.S) \
  $(CELT_AM_SOURCES_ARM_ASM:.s.in=-gnu.S)
@@ -1601,15 +1601,15 @@ OPT_UNIT_TEST_OBJ = $(celt_tests_test_unit_mathops_SOURCES:.c=.o) \
                     $(celt_tests_test_unit_dft_SOURCES:.c=.o) \
                     $(silk_tests_test_unit_LPC_inv_pred_gain_SOURCES:.c=.o)
 
-#SSE_OBJ = $(CELT_SOURCES_SSE:.c=.lo)
-#SSE2_OBJ = $(CELT_SOURCES_SSE2:.c=.lo)
-#SSE4_1_OBJ = $(CELT_SOURCES_SSE4_1:.c=.lo) \
-#             $(SILK_SOURCES_SSE4_1:.c=.lo) \
-#             $(SILK_SOURCES_FIXED_SSE4_1:.c=.lo)
+SSE_OBJ = $(CELT_SOURCES_SSE:.c=.lo)
+SSE2_OBJ = $(CELT_SOURCES_SSE2:.c=.lo)
+SSE4_1_OBJ = $(CELT_SOURCES_SSE4_1:.c=.lo) \
+             $(SILK_SOURCES_SSE4_1:.c=.lo) \
+             $(SILK_SOURCES_FIXED_SSE4_1:.c=.lo)
 
-ARM_NEON_INTR_OBJ = $(CELT_SOURCES_ARM_NEON_INTR:.c=.lo) \
-                    $(SILK_SOURCES_ARM_NEON_INTR:.c=.lo) \
-                    $(SILK_SOURCES_FIXED_ARM_NEON_INTR:.c=.lo)
+#ARM_NEON_INTR_OBJ = $(CELT_SOURCES_ARM_NEON_INTR:.c=.lo) \
+#                    $(SILK_SOURCES_ARM_NEON_INTR:.c=.lo) \
+#                    $(SILK_SOURCES_FIXED_ARM_NEON_INTR:.c=.lo)
 
 all: $(BUILT_SOURCES) config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
@@ -3447,11 +3447,11 @@ $(CELT_SOURCES_ARM_ASM:%.s=%-gnu.S): $(top_srcdir)/celt/arm/arm2gnu.pl
 # For autoconf-modified sources (e.g., armopts.s)
 %-gnu.S: %.s
 	$(top_srcdir)/celt/arm/arm2gnu.pl  < $< > $@
-#$(SSE_OBJ): CFLAGS += $(OPUS_X86_SSE_CFLAGS)
-#$(SSE2_OBJ): CFLAGS += $(OPUS_X86_SSE2_CFLAGS)
-#$(SSE4_1_OBJ): CFLAGS += $(OPUS_X86_SSE4_1_CFLAGS)
-$(ARM_NEON_INTR_OBJ): CFLAGS += \
- $(OPUS_ARM_NEON_INTR_CFLAGS)  $(NE10_CFLAGS)
+$(SSE_OBJ): CFLAGS += $(OPUS_X86_SSE_CFLAGS)
+$(SSE2_OBJ): CFLAGS += $(OPUS_X86_SSE2_CFLAGS)
+$(SSE4_1_OBJ): CFLAGS += $(OPUS_X86_SSE4_1_CFLAGS)
+#$(ARM_NEON_INTR_OBJ): CFLAGS += \
+# $(OPUS_ARM_NEON_INTR_CFLAGS)  $(NE10_CFLAGS)
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

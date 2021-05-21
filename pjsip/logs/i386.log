@@ -1,0 +1,27 @@
+configure-iphone: IPHONESDK is not specified, choosing iPhoneSimulator14.5.sdk
+configure-iphone: CC is not specified, choosing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+configure-iphone: CXX is not specified, using /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+configure-iphone: calling ./aconfigure with env vars:
+ MIN_IOS = -miphoneos-version-min=10.0
+ CC = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+ CXX = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+ SDKPATH = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk
+ CFLAGS = -O2 -m32 -mios-simulator-version-min=10.0 -enable-epoll -fembed-bitcode -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/ssl/include -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/h264/include -miphoneos-version-min=10.0 -DPJ_SDK_NAME="\"iPhoneSimulator14.5.sdk\"" -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk
+ LDFLAGS = -O2 -m32 -mios-simulator-version-min=10.0 -Wl,-no_compact_unwind -L/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/ssl/lib -L/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/h264/lib -lstdc++ -miphoneos-version-min=10.0 -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk -framework AudioToolbox -framework Foundation
+ AR = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -o
+ RANLIB = echo ranlib
+ ARCH = i386
+checking build system type... x86_64-apple-darwin20.3.0
+checking host system type... i386-apple-darwin_ios
+checking target system type... i386-apple-darwin_ios
+checking for i386-apple-darwin_ios-gcc... /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+checking whether the C compiler works... no
+aconfigure: error: in `/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/src':
+aconfigure: error: C compiler cannot create executables
+See `config.log' for more details
+Makefile:1: build.mak: No such file or directory
+Makefile:2: build/host-.mak: No such file or directory
+make: *** No rule to make target `build/host-.mak'.  Stop.
+Makefile:1: build.mak: No such file or directory
+Makefile:2: build/host-.mak: No such file or directory
+make: *** No rule to make target `build/host-.mak'.  Stop.
