@@ -2,12 +2,12 @@ configure-iphone: IPHONESDK is not specified, choosing iPhoneSimulator14.5.sdk
 configure-iphone: CC is not specified, choosing /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 configure-iphone: CXX is not specified, using /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 configure-iphone: calling ./aconfigure with env vars:
- MIN_IOS = -miphoneos-version-min=12.0
+ MIN_IOS = -miphoneos-version-min=10.0
  CC = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
  CXX = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
  SDKPATH = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk
- CFLAGS = -O2 -m32 -mios-simulator-version-min=12.0 -enable-epoll -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/ssl/include -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/h264/include -miphoneos-version-min=12.0 -DPJ_SDK_NAME="\"iPhoneSimulator14.5.sdk\"" -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk
- LDFLAGS = -O2 -m32 -mios-simulator-version-min=12.0 -Wl,-no_compact_unwind -L/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/ssl/lib -L/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/h264/lib -lstdc++ -miphoneos-version-min=12.0 -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk -framework AudioToolbox -framework Foundation
+ CFLAGS = -O2 -m32 -mios-simulator-version-min=10.0 -enable-epoll -fembed-bitcode -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/ssl/include -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/h264/include -miphoneos-version-min=10.0 -DPJ_SDK_NAME="\"iPhoneSimulator14.5.sdk\"" -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk
+ LDFLAGS = -O2 -m32 -mios-simulator-version-min=10.0 -Wl,-no_compact_unwind -L/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/ssl/lib -L/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/h264/lib -lstdc++ -miphoneos-version-min=10.0 -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk -framework AudioToolbox -framework Foundation
  AR = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -o
  RANLIB = echo ranlib
  ARCH = x86_64

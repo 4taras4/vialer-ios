@@ -137,9 +137,9 @@ AWK = awk
 CC = gcc
 CCAS = gcc
 CCASDEPMODE = depmode=gcc3
-CCASFLAGS =  -arch x86_64 -Ofast -flto -g -fPIE -miphoneos-version-min=12.0 -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/dependencies/include -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
+CCASFLAGS =  -arch x86_64 -Ofast -flto -g -fPIE -miphoneos-version-min=10.0 -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/dependencies/include -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
 CCDEPMODE = depmode=gcc3
-CFLAGS =  -arch x86_64 -Ofast -flto -g -fPIE -miphoneos-version-min=12.0 -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/dependencies/include -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -fvisibility=hidden -fstack-protector-strong -D_FORTIFY_SOURCE=2 -W -Wall -Wextra -Wcast-align -Wnested-externs -Wshadow -Wstrict-prototypes
+CFLAGS =  -arch x86_64 -Ofast -flto -g -fPIE -miphoneos-version-min=10.0 -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/dependencies/include -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -fvisibility=hidden -fstack-protector-strong -D_FORTIFY_SOURCE=2 -W -Wall -Wextra -Wcast-align -Wnested-externs -Wshadow -Wstrict-prototypes
 CPP = gcc -E
 CPPFLAGS = 
 CYGPATH_W = echo
@@ -165,7 +165,7 @@ INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LD = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
-LDFLAGS =  -flto -fPIE -miphoneos-version-min=12.0 -L/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/dependencies/lib
+LDFLAGS =  -flto -fPIE -miphoneos-version-min=10.0 -L/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/dependencies/lib
 LIBM = 
 LIBOBJS = 
 LIBS = 
@@ -258,7 +258,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/build/built/iPhoneSimulator14.0-x86_64.sdk
+prefix = /Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/opus/build/built/iPhoneSimulator14.5-x86_64.sdk
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
