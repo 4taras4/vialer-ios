@@ -21,8 +21,8 @@ export OPUS_SUPPORT=true
 export H264_SUPPORT=true
 export INDEPENDENT_WEBRTC=false
 export ENABLE_ZRTP=false
-export HAS_BITCODE=true
-export HAS_IPV6=false
+export HAS_BITCODE=false
+export HAS_IPV6=true
 export SHOW_HELP=false
 
 export PJSIP_VERSION="2.10"

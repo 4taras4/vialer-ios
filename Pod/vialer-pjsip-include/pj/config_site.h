@@ -15,4 +15,5 @@
 #define PJMEDIA_VIDEO_DEV_HAS_OPENGL_ES 1
 #define PJMEDIA_VIDEO_DEV_HAS_IOS_OPENGL 1
 #include <OpenGLES/ES3/glext.h>
+ #define PJ_HAS_IPV6 1
 #include <pj/config_site_sample.h>
