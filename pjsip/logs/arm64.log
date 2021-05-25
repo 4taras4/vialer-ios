@@ -3,12 +3,12 @@ configure-iphone: IPHONESDK is not specified, choosing iPhoneOS14.5.sdk
 configure-iphone: CC is not specified, choosing /Applications/XCode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 configure-iphone: CXX is not specified, using /Applications/XCode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 configure-iphone: calling ./aconfigure with env vars:
- MIN_IOS = -miphoneos-version-min=10.0
+ MIN_IOS = -miphoneos-version-min=12.0
  CC = /Applications/XCode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
  CXX = /Applications/XCode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
  SDKPATH = /Applications/XCode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk
- CFLAGS = -miphoneos-version-min=10.0 -enable-epoll -fembed-bitcode -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/ssl/include -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/h264/include -miphoneos-version-min=10.0 -DPJ_SDK_NAME="\"iPhoneOS14.5.sdk\"" -arch arm64 -isysroot /Applications/XCode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk
- LDFLAGS =  -L/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/ssl/lib -L/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/h264/lib -lstdc++ -miphoneos-version-min=10.0 -arch arm64 -isysroot /Applications/XCode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk -framework AudioToolbox -framework Foundation
+ CFLAGS = -miphoneos-version-min=12.0 -enable-epoll -fembed-bitcode -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/ssl/include -I/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/h264/include -miphoneos-version-min=12.0 -DPJ_SDK_NAME="\"iPhoneOS14.5.sdk\"" -arch arm64 -isysroot /Applications/XCode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk
+ LDFLAGS =  -L/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/ssl/lib -L/Users/tarasmarkevych/Desktop/My/vialer-ios/pjsip/external/h264/lib -lstdc++ -miphoneos-version-min=12.0 -arch arm64 -isysroot /Applications/XCode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk -framework AudioToolbox -framework Foundation
  AR = /Applications/XCode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/../../../Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -o
  RANLIB = echo ranlib
  ARCH = arm64
