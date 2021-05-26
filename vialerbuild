@@ -2,10 +2,10 @@
 set -e
 
 AVIALABLE_ARCHS=(
-    "armv7"
-    "armv7s"
+    # "armv7"
+    # "armv7s"
     "arm64"
-    "i386"
+    # "i386"
     "x86_64"
 )
 export BASE_DIR=`pwd -P`
@@ -21,7 +21,7 @@ export OPUS_SUPPORT=true
 export H264_SUPPORT=true
 export INDEPENDENT_WEBRTC=false
 export ENABLE_ZRTP=false
-export HAS_BITCODE=true
+export HAS_BITCODE=false
 export HAS_IPV6=false
 export SHOW_HELP=false
 
@@ -802,7 +802,7 @@ if [ $SHOW_HELP = true ]; then
 else
     clean_pjsip
     download_pjsip
-    sh '../../pjsippatches'
+    # sh '../../pjsippatches'
     build_h264
     build_ssl
     build_opus

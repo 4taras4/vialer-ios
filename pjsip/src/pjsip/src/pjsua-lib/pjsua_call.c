@@ -4581,7 +4581,7 @@ static pj_status_t modify_sdp_of_call_hold(pjsua_call *call,
 	     */
 	    if (as_answerer || (call->media[mi].dir & PJMEDIA_DIR_ENCODING)) {
 		/* Add sendonly attribute */
-		attr = pjmedia_sdp_attr_create(pool, "inactive", NULL);
+		attr = pjmedia_sdp_attr_create(pool, "sendonly", NULL);
 		pjmedia_sdp_media_add_attr(m, attr);
 	    } else {
 		/* Add inactive attribute */
