@@ -9,13 +9,13 @@ AVIALABLE_ARCHS=(
     "x86_64"
 )
 export BASE_DIR=`pwd -P`
-export MIN_IOS_VERSION="10.0"
+export MIN_IOS_VERSION="12.0"
 export IOS_SDK_VERSION="14.5"
 export AVIALABLE_ARCHS
 export USE_ARCHS=()
 
 export DOWNLOAD_PJSIP_SRC=true
-export CLEAN_PJSIP_SRC=true
+export CLEAN_PJSIP_SRC=false
 export SSL_SUPPORT=true
 export OPUS_SUPPORT=true
 export H264_SUPPORT=true
