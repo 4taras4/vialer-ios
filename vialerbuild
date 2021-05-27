@@ -49,7 +49,7 @@ export ZRTP_BUILD_DIR="$BUILD_DIR/zrtp"
 export OPUS_BUILD_DIR="$BUILD_DIR/opus"
 export H264_BUILD_DIR="$BUILD_DIR/h264"
 
-export XCODE_SIMULATOR_DEV_PATH="`xcrun -sdk iphonesimulator --show-sdk-platform-path`/Developer"
+export XCODE_SIMULATOR_DEV_PATH="xcrun -sdk iphonesimulator"
 
 set -e
 
@@ -253,7 +253,12 @@ function build_h264 () {
     fi
 
     echo "--- Lipo openH264"
-    xcrun -sdk iphoneos lipo ${h264_lipo_args} -create -output "${H264_BUILD_DIR}/lib/libopenh264.a" || exit
+    if [ "$arch" == "x86_64" ]; then
+        xcrun -sdk iphonesimulator lipo ${h264_lipo_args} -create -output "${H264_BUILD_DIR}/lib/libopenh264.a" || exit
+    else
+        xcrun -sdk iphoneos lipo ${h264_lipo_args} -create -output "${H264_BUILD_DIR}/lib/libopenh264.a" || exit
+    fi
+      # xcrun -sdk iphoneos lipo ${h264_lipo_args} -create -output "${H264_BUILD_DIR}/lib/libopenh264.a" || exit
 
     echo "--- Copying header files"
     cp -R "${H264_BUILD_DIR}/build/${USE_ARCHS[0]}/include/" "${H264_BUILD_DIR}/include"
@@ -349,27 +354,55 @@ function build_opus () {
     ccache=""
 
     for arch in ${USE_ARCHS[@]}
+    # do
+    #     echo "-- Opus: Compiling $arch"
+    #     opus_extra_cflags="-arch $arch"
+    #     if [ "$arch" == "i386" ] || [ "$arch" == "x86_64" ]; then
+    #         os_platform="iPhoneSimulator"
+    #         opus_extra_flags="--with-pic"
+    #         opus_extra_config="--host=$arch-apple-darwin"
+    #     else
+    #         os_platform="iPhoneOS"
+    #         opus_extra_config="--host=arm-apple-darwin"
+    #     fi
+    #
+    #     mkdir -p "${opus_inter_dir}/${os_platform}${IOS_SDK_VERSION}-${arch}.sdk"
+    #
+    #     ./configure \
+    #         --enable-float-approx --disable-shared --enable-static \
+    #         --with-pic --disable-extra-programs --disable-doc ${opus_extra_config} \
+    #         --prefix="${opus_inter_dir}/${os_platform}${IOS_SDK_VERSION}-${arch}.sdk" \
+    #         ${opus_extra_config} \
+    #         LDFLAGS="$LDFLAGS ${opus_opt_ldflags} -fPIE -miphoneos-version-min=${MIN_IOS_VERSION} -L${opus_output_dir}/lib" \
+    #         CFLAGS="$CFLAGS ${opus_extra_cflags} ${opus_opt_cflags} -fPIE -miphoneos-version-min=${MIN_IOS_VERSION} -I${opus_output_dir}/include -isysroot ${xcode_dev_path}/Platforms/${os_platform}.platform/Developer/SDKs/${os_platform}.sdk" || exit
+
     do
-        echo "-- Opus: Compiling $arch"
-        opus_extra_cflags="-arch $arch"
-        if [ "$arch" == "i386" ] || [ "$arch" == "x86_64" ]; then
-            os_platform="iPhoneSimulator"
-            opus_extra_flags="--with-pic"
-            opus_extra_config="--host=$arch-apple-darwin"
-        else
-            os_platform="iPhoneOS"
-            opus_extra_config="--host=arm-apple-darwin"
-        fi
+      echo "-- Opus: Compiling ${arch}"
+      opus_extra_cflags="-arch ${arch}"
 
-        mkdir -p "${opus_inter_dir}/${os_platform}${IOS_SDK_VERSION}-${arch}.sdk"
+      if [ "$arch" == "x86_64" ]; then
+          echo "simulator x86_64"
+          os_platform="iPhoneSimulator"
+          min_os="-O2 -m64 -mios-simulator-version-min=${MIN_IOS_VERSION} -miphoneos-version-min=${MIN_IOS_VERSION}"
+          opus_extra_config="--host=x86_64-apple-darwin"
+      else
+          echo "device settings"
+          os_platform="iPhoneOS"
+          min_os="-miphoneos-version-min=${MIN_IOS_VERSION}"
+          opus_extra_config="--host=arm-apple-darwin"
+      fi
 
-        ./configure \
-            --enable-float-approx --disable-shared --enable-static \
-            --with-pic --disable-extra-programs --disable-doc ${opus_extra_config} \
-            --prefix="${opus_inter_dir}/${os_platform}${IOS_SDK_VERSION}-${arch}.sdk" \
-            ${opus_extra_config} \
-            LDFLAGS="$LDFLAGS ${opus_opt_ldflags} -fPIE -miphoneos-version-min=${MIN_IOS_VERSION} -L${opus_output_dir}/lib" \
-            CFLAGS="$CFLAGS ${opus_extra_cflags} ${opus_opt_cflags} -fPIE -miphoneos-version-min=${MIN_IOS_VERSION} -I${opus_output_dir}/include -isysroot ${xcode_dev_path}/Platforms/${os_platform}.platform/Developer/SDKs/${os_platform}.sdk" || exit
+      mkdir -p "${opus_inter_dir}/${os_platform}${IOS_SDK_VERSION}-${arch}.sdk"
+
+      echo "${arch}"
+
+      ./configure \
+          --enable-float-approx --disable-shared --enable-static \
+          --with-pic --disable-extra-programs --disable-doc ${opus_extra_config} \
+          --prefix="${opus_inter_dir}/${os_platform}${IOS_SDK_VERSION}-${arch}.sdk" \
+          ${opus_extra_config} \
+          LDFLAGS="$LDFLAGS ${opus_opt_ldflags} -fPIE ${min_os} -L${opus_output_dir}/lib" \
+          CFLAGS="$CFLAGS -arch ${arch} ${opus_extra_cflags} ${opus_opt_cflags} -fPIE ${min_os} -I${opus_output_dir}/include -isysroot ${xcode_dev_path}/Platforms/${os_platform}.platform/Developer/SDKs/${os_platform}.sdk" || exit
 
         make -j4 || exit
 
