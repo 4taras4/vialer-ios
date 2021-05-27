@@ -49,7 +49,7 @@ export ZRTP_BUILD_DIR="$BUILD_DIR/zrtp"
 export OPUS_BUILD_DIR="$BUILD_DIR/opus"
 export H264_BUILD_DIR="$BUILD_DIR/h264"
 
-export XCODE_SIMULATOR_DEV_PATH="xcrun -sdk iphonesimulator"
+export XCODE_SIMULATOR_DEV_PATH="`xcrun -sdk iphonesimulator --show-sdk-platform-path`/Developer"
 
 set -e
 
