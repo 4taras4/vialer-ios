@@ -472,10 +472,10 @@ function config_site () {
     echo "#define PJMEDIA_AUDIO_DEV_HAS_OPENSL 0" >> $PJSIP_CONFIG_SITE_H
     echo "#define PJSIP_AUTH_AUTO_SEND_NEXT 0" >> $PJSIP_CONFIG_SITE_H
     echo "#define PJMEDIA_HAS_GSM_CODEC 0" >> $PJSIP_CONFIG_SITE_H
-    # echo "#define PJMEDIA_SRTP_HAS_DTLS 1">> $PJSIP_CONFIG_SITE_H
+    echo "#define PJMEDIA_SRTP_HAS_DTLS 1">> $PJSIP_CONFIG_SITE_H
     echo "#define PJMEDIA_HAS_OPUS_CODEC 1" >> $PJSIP_CONFIG_SITE_H
     echo "#define PJ_AUTOCONF 1" >> $PJSIP_CONFIG_SITE_H
-    # echo "#define PJMEDIA_HAS_SRTP 1" >> $PJSIP_CONFIG_SITE_H
+    echo "#define PJMEDIA_HAS_SRTP 1" >> $PJSIP_CONFIG_SITE_H
 
 
     if [ $H264_SUPPORT = true ]; then
@@ -800,7 +800,7 @@ export -f copy_to_lib_dir
     else
     # clean_pjsip
     # download_pjsip
-    # sh 'pjsippatches'
+    sh 'pjsippatches'
 	  build_ssl
 	  build_opus
     build_h264
