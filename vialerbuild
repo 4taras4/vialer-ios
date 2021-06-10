@@ -789,20 +789,20 @@ function create_framework {
 
 export -f copy_to_lib_dir
 
-if [ -z ${USE_ARCHS} ]; then
-    for arch in "${AVIALABLE_ARCHS[@]}"; do
-        USE_ARCHS+=($arch)
-    done
-fi
+    if [ -z ${USE_ARCHS} ]; then
+        for arch in "${AVIALABLE_ARCHS[@]}"; do
+            USE_ARCHS+=($arch)
+        done
+    fi
 
-if [ $SHOW_HELP = true ]; then
-    show_help
-else
+    if [ $SHOW_HELP = true ]; then
+        show_help
+    else
     clean_pjsip
     download_pjsip
-    sh '../../pjsippatches'
-	build_ssl
-	build_opus
+    # sh '../../pjsippatches'
+	  build_ssl
+	  build_opus
     build_h264
 
 
