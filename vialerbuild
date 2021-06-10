@@ -2,26 +2,22 @@
 set -e
 
 AVIALABLE_ARCHS=(
-    # "armv7"
-    # "armv7s"
     "arm64"
-    # "i386"
-    "x86_64"
 )
 export BASE_DIR=`pwd -P`
-export MIN_IOS_VERSION="12.0"
-export IOS_SDK_VERSION="14.5"
+export MIN_IOS_VERSION="10.0"
+export IOS_SDK_VERSION="latest"
 export AVIALABLE_ARCHS
 export USE_ARCHS=()
 
 export DOWNLOAD_PJSIP_SRC=true
-export CLEAN_PJSIP_SRC=false
+export CLEAN_PJSIP_SRC=true
 export SSL_SUPPORT=true
 export OPUS_SUPPORT=true
 export H264_SUPPORT=true
 export INDEPENDENT_WEBRTC=false
 export ENABLE_ZRTP=false
-export HAS_BITCODE=false
+export HAS_BITCODE=true
 export HAS_IPV6=false
 export SHOW_HELP=false
 
@@ -253,12 +249,7 @@ function build_h264 () {
     fi
 
     echo "--- Lipo openH264"
-    if [ "$arch" == "x86_64" ]; then
-        xcrun -sdk iphonesimulator lipo ${h264_lipo_args} -create -output "${H264_BUILD_DIR}/lib/libopenh264.a" || exit
-    else
-        xcrun -sdk iphoneos lipo ${h264_lipo_args} -create -output "${H264_BUILD_DIR}/lib/libopenh264.a" || exit
-    fi
-      # xcrun -sdk iphoneos lipo ${h264_lipo_args} -create -output "${H264_BUILD_DIR}/lib/libopenh264.a" || exit
+    xcrun -sdk iphoneos lipo ${h264_lipo_args} -create -output "${H264_BUILD_DIR}/lib/libopenh264.a" || exit
 
     echo "--- Copying header files"
     cp -R "${H264_BUILD_DIR}/build/${USE_ARCHS[0]}/include/" "${H264_BUILD_DIR}/include"
@@ -354,55 +345,27 @@ function build_opus () {
     ccache=""
 
     for arch in ${USE_ARCHS[@]}
-    # do
-    #     echo "-- Opus: Compiling $arch"
-    #     opus_extra_cflags="-arch $arch"
-    #     if [ "$arch" == "i386" ] || [ "$arch" == "x86_64" ]; then
-    #         os_platform="iPhoneSimulator"
-    #         opus_extra_flags="--with-pic"
-    #         opus_extra_config="--host=$arch-apple-darwin"
-    #     else
-    #         os_platform="iPhoneOS"
-    #         opus_extra_config="--host=arm-apple-darwin"
-    #     fi
-    #
-    #     mkdir -p "${opus_inter_dir}/${os_platform}${IOS_SDK_VERSION}-${arch}.sdk"
-    #
-    #     ./configure \
-    #         --enable-float-approx --disable-shared --enable-static \
-    #         --with-pic --disable-extra-programs --disable-doc ${opus_extra_config} \
-    #         --prefix="${opus_inter_dir}/${os_platform}${IOS_SDK_VERSION}-${arch}.sdk" \
-    #         ${opus_extra_config} \
-    #         LDFLAGS="$LDFLAGS ${opus_opt_ldflags} -fPIE -miphoneos-version-min=${MIN_IOS_VERSION} -L${opus_output_dir}/lib" \
-    #         CFLAGS="$CFLAGS ${opus_extra_cflags} ${opus_opt_cflags} -fPIE -miphoneos-version-min=${MIN_IOS_VERSION} -I${opus_output_dir}/include -isysroot ${xcode_dev_path}/Platforms/${os_platform}.platform/Developer/SDKs/${os_platform}.sdk" || exit
-
     do
-      echo "-- Opus: Compiling ${arch}"
-      opus_extra_cflags="-arch ${arch}"
+        echo "-- Opus: Compiling $arch"
+        opus_extra_cflags="-arch $arch"
+        if [ "$arch" == "i386" ] || [ "$arch" == "x86_64" ]; then
+            os_platform="iPhoneSimulator"
+            opus_extra_flags="--with-pic"
+            opus_extra_config="--host=$arch-apple-darwin"
+        else
+            os_platform="iPhoneOS"
+            opus_extra_config="--host=arm-apple-darwin"
+        fi
 
-      if [ "$arch" == "x86_64" ]; then
-          echo "simulator x86_64"
-          os_platform="iPhoneSimulator"
-          min_os="-O2 -m64 -mios-simulator-version-min=${MIN_IOS_VERSION} -miphoneos-version-min=${MIN_IOS_VERSION}"
-          opus_extra_config="--host=x86_64-apple-darwin"
-      else
-          echo "device settings"
-          os_platform="iPhoneOS"
-          min_os="-miphoneos-version-min=${MIN_IOS_VERSION}"
-          opus_extra_config="--host=arm-apple-darwin"
-      fi
+        mkdir -p "${opus_inter_dir}/${os_platform}${IOS_SDK_VERSION}-${arch}.sdk"
 
-      mkdir -p "${opus_inter_dir}/${os_platform}${IOS_SDK_VERSION}-${arch}.sdk"
-
-      echo "${arch}"
-
-      ./configure \
-          --enable-float-approx --disable-shared --enable-static \
-          --with-pic --disable-extra-programs --disable-doc ${opus_extra_config} \
-          --prefix="${opus_inter_dir}/${os_platform}${IOS_SDK_VERSION}-${arch}.sdk" \
-          ${opus_extra_config} \
-          LDFLAGS="$LDFLAGS ${opus_opt_ldflags} -fPIE ${min_os} -L${opus_output_dir}/lib" \
-          CFLAGS="$CFLAGS -arch ${arch} ${opus_extra_cflags} ${opus_opt_cflags} -fPIE ${min_os} -I${opus_output_dir}/include -isysroot ${xcode_dev_path}/Platforms/${os_platform}.platform/Developer/SDKs/${os_platform}.sdk" || exit
+        ./configure \
+            --enable-float-approx --disable-shared --enable-static \
+            --with-pic --disable-extra-programs --disable-doc ${opus_extra_config} \
+            --prefix="${opus_inter_dir}/${os_platform}${IOS_SDK_VERSION}-${arch}.sdk" \
+            ${opus_extra_config} \
+            LDFLAGS="$LDFLAGS ${opus_opt_ldflags} -fPIE -miphoneos-version-min=${MIN_IOS_VERSION} -L${opus_output_dir}/lib" \
+            CFLAGS="$CFLAGS ${opus_extra_cflags} ${opus_opt_cflags} -fPIE -miphoneos-version-min=${MIN_IOS_VERSION} -I${opus_output_dir}/include -isysroot ${xcode_dev_path}/Platforms/${os_platform}.platform/Developer/SDKs/${os_platform}.sdk" || exit
 
         make -j4 || exit
 
@@ -567,6 +530,7 @@ function configure_armv7s () {
 function configure_arm64 () {
     echo "Configure for arm64"
     export CFLAGS="-miphoneos-version-min=$MIN_IOS_VERSION -enable-epoll"
+    export CFLAGS="-miphoneos-version-min=$MIN_IOS_VERSION"
     export LDFLAGS=
 }
 
@@ -619,6 +583,7 @@ function _build () {
 
     export LDFLAGS="${LDFLAGS} -lstdc++"
     export MIN_IOS="-miphoneos-version-min=${MIN_IOS_VERSION}"
+
 
     echo "Building for $arch"
 
@@ -835,10 +800,12 @@ if [ $SHOW_HELP = true ]; then
 else
     clean_pjsip
     download_pjsip
-    # sh '../../pjsippatches'
+    sh '../../pjsippatches'
+	build_ssl
+	build_opus
     build_h264
-    build_ssl
-    build_opus
+
+
     config_site
     build_archs
     _merge
