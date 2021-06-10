@@ -1305,18 +1305,32 @@ static pj_status_t darwin_stream_start(pjmedia_vid_dev_stream *strm)
     PJ_LOG(4, (THIS_FILE, "Starting Darwin video stream"));
 
     if (stream->cap_session) {
-        dispatch_sync_on_main_queue(^{
-            [stream->cap_session startRunning];
-        });
+      #if TARGET_OS_IPHONE
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [stream->cap_session startRunning];
+                if (![stream->cap_session isRunning]) {
+                    /* More info about the error should be reported in
+                     * VOutDelegate::session_runtime_error()
+                     */
+                    PJ_LOG(3, (THIS_FILE, "Unable to start AVFoundation capture "
+                               "session"));
+                }
+            });
+      #else
+            dispatch_sync_on_main_queue(^{
+                [stream->cap_session startRunning];
+            });
 
-    	if (![stream->cap_session isRunning]) {
-    	    /* More info about the error should be reported in
-    	     * VOutDelegate::session_runtime_error()
-    	     */
-    	    PJ_LOG(3, (THIS_FILE, "Unable to start AVFoundation capture "
-    				  "session"));
-    	}
-    }
+            if (![stream->cap_session isRunning]) {
+                /* More info about the error should be reported in
+                 * VOutDelegate::session_runtime_error()
+                 */
+                PJ_LOG(3, (THIS_FILE, "Unable to start AVFoundation capture "
+                           "session"));
+                return PJ_EUNKNOWN;
+            }
+      #endif
+  }
 
     return PJ_SUCCESS;
 }
