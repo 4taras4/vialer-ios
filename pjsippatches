@@ -1,11 +1,11 @@
 #!/bin/bash
 
 echo "Apply patches"
-echo "media-2.10.patch"
-git apply patches/media-2.10.patch
-echo "inactive_on_hold.patch"
-git apply patches/inactive_on_hold.patch
-echo "callid.patch"
+echo "patches/media-2.10.patch"
+git apply ../../patches/media-2.10.patch
+echo "patches/inactive_on_hold.patch"
+git apply ../../patches/inactive_on_hold.patch
+echo "patches/callid.patch"
 # git apply patches/delayediossession.patch
 # echo "delayediossession.patch"
 #git apply patches/callid.patch

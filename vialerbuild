@@ -798,9 +798,9 @@ export -f copy_to_lib_dir
     if [ $SHOW_HELP = true ]; then
         show_help
     else
-    # clean_pjsip
-    # download_pjsip
-    sh 'pjsippatches'
+    clean_pjsip
+    download_pjsip
+    sh '../../pjsippatches'
 	  build_ssl
 	  build_opus
     build_h264
